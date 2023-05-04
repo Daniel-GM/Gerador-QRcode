@@ -1,0 +1,66 @@
+:root{
+  --cor-primaria: #1b1b1b;
+  --cor-secundaria: #fff;
+}
+
+html, 
+body {
+  margin: 0px;
+  width: 100%;
+  background-color: var(--cor-primaria);
+  color: var(--cor-secundaria);
+}
+
+html, 
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#gerador {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+}
+
+.file-label, .btn-form {
+  background-color: var(--cor-secundaria);
+  color: var(--cor-primaria);
+  text-align: center;
+  padding: 5px;
+  border-radius: 200px;
+  margin-bottom: 20px;
+  width: 50%;
+}
+
+#cor {
+  margin-bottom: 20px;
+}
+
+.btn-form {
+  width: 25%;
+}
+
+.file-input {
+  display: none;
+}
+
+div#result {
+  height: 408px;
+}
+
+.comanda {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  margin-bottom: 20px;
+}

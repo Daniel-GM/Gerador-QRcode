@@ -9,8 +9,20 @@
   <title>Gerador QRcode</title>
 </head>
 <body>
-  <div id="main">
-    
+  <div id="gerador">
+    <label for="form-logo" class="file-label">Selecione a Logo</label>
+    <input type="file" class="file-input" id="form-logo" name="photos">
+
+    <label for="form-photo" class="file-label">Selecione os QRcode</label>
+    <input type="file" class="file-input" id="form-photo" name="photos" multiple>
+
+    <input type="color" id="cor">
+
+    <button class="btn-form" type="submit" onclick="gerarComanda()">Gerar comanda</button>
+  </div>
+
+  <div id="result">
+
   </div>
 </body>
 </html>
