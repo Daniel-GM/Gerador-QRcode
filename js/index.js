@@ -7,7 +7,6 @@ function gerarComanda() {
   
   for (let index = 0; index < formPhoto.files.length; index++) {
     const photo = formPhoto.files[index]
-    console.log(formLogo.files[0])
     /* criando a logo */
     const logo = document.createElement('img')
     logo.src = URL.createObjectURL(formLogo.files[0])
@@ -33,7 +32,6 @@ function gerarComanda() {
   }
 
   const imagem = result.children
-  console.log(imagem)
   for (let index = 0; index < imagem.length; index++) {
     const div = imagem[index]
     html2canvas(div).then(function(canvas) {
