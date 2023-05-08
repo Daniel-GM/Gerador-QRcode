@@ -1,11 +1,11 @@
 function gerarComanda() {
+  const formLogo = document.getElementById('form-logo')
+  const formPhoto = document.getElementById('form-photo')
+  const result = document.getElementById('result')
+  const cor = document.getElementById('cor')
+  result.textContent = ''
+  
   setTimeout(() => {
-    const formLogo = document.getElementById('form-logo')
-    const formPhoto = document.getElementById('form-photo')
-    const result = document.getElementById('result')
-    const cor = document.getElementById('cor')
-    result.textContent = ''
-    
     for (let index = 0; index < formPhoto.files.length; index++) {
       const photo = formPhoto.files[index]
       /* criando a logo */
@@ -32,19 +32,18 @@ function gerarComanda() {
       result.appendChild(comanda)
     }
   }, 1000)
-  
-    const imagem = result.children
-    for (let index = 0; index < imagem.length; index++) {
-      const div = imagem[index]
-      html2canvas(div).then(function(canvas) {
-        result.appendChild(canvas)
-      });
-      div.style.display = 'none'
-    }
 
-    const download = document.getElementById('download-form')
-    download.style.display = 'inline'
-  
+  debugger
+  const imagem = result.children
+  for (let index = 0; index < imagem.length; index++) {
+    const div = imagem[index]
+    html2canvas(div).then(function(canvas) {
+      result.appendChild(canvas)
+    });
+    div.style.display = 'none'
+  }
+  const download = document.getElementById('download-form')
+  download.style.display = 'inline'
 }
 
 document.getElementById('download-form').addEventListener("click", function() {
