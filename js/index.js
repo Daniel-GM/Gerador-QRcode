@@ -1,12 +1,20 @@
 async function gerarComanda() {
+  const loading = document.getElementById('loading')
   const formLogo = document.getElementById('form-logo')
   const formPhoto = document.getElementById('form-photo')
   const result = document.getElementById('result')
   const cor = document.getElementById('cor')
+  const download = document.getElementById('download-form')
+  download.style.display = 'none'
   result.textContent = ''
   
-  
   for (let index = 0; index < formPhoto.files.length; index++) {
+    let porcentagem = ((index+1)/formPhoto.files.length)*100
+    const textLoading = document.getElementById('text-loading')
+    textLoading.innerText = `${index+1}/${formPhoto.files.length}`
+    loading.style.display = 'block'
+    loading.style.background = `linear-gradient(to right, #63c384 0%, #63c384 ${porcentagem.toFixed(2)}%, #161616 ${porcentagem.toFixed(2)}%)`
+
     const photo = formPhoto.files[index]
     /* criando a logo */
     const logo = document.createElement('img')
@@ -35,20 +43,20 @@ async function gerarComanda() {
     comanda.style.display = 'none'
     result.appendChild(canvas)
   }
-  const download = document.getElementById('download-form')
+  loading.style.display = 'none'
   download.style.display = 'inline'
 }
 
 document.getElementById('download-form').addEventListener("click", function() {
-  var zip = new JSZip();
+  var zip = new JSZip()
   var imagens = document.querySelectorAll("canvas")
   for (var i = 0; i < imagens.length; i++) {
       var image = imagens[i]
-      var imgData = image.toDataURL('image/png').replace(/^data:image\/(png|jpg);base64,/, "");
-      zip.file(`comanda-${i+1}.png`, imgData, {base64: true});
+      var imgData = image.toDataURL('image/png').replace(/^data:image\/(png|jpg);base64,/, "")
+      zip.file(`comanda-${i+1}.png`, imgData, {base64: true})
   }
   zip.generateAsync({type:"blob"})
   .then(function(content) {
-      saveAs(content, "comandas.zip");
-  });
+      saveAs(content, "comandas.zip")
+  })
 })
