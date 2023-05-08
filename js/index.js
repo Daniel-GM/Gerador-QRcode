@@ -46,7 +46,6 @@ function gerarComanda() {
 }
 
 document.getElementById('download-form').addEventListener("click", function() {
-  debugger
   var imagens = document.querySelectorAll("canvas")
   for (var i = 0; i < imagens.length; i++) {
       var image = imagens[i]
