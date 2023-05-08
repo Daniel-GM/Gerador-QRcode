@@ -31,7 +31,9 @@ body {
   width: 50%;
 }
 
-.file-label, .btn-form {
+.file-label, 
+.btn-form, 
+#download-form {
   background-color: var(--cor-secundaria);
   color: var(--cor-primaria);
   text-align: center;
@@ -45,7 +47,8 @@ body {
   margin-bottom: 20px;
 }
 
-.btn-form {
+.btn-form, 
+#download-form {
   width: 25%;
 }
 
@@ -55,6 +58,8 @@ body {
 
 div#result {
   height: 408px;
+  display: flex;
+  flex-direction: column;
 }
 
 .comanda {
@@ -63,4 +68,12 @@ div#result {
   align-items: center;
   padding: 20px;
   margin-bottom: 20px;
+}
+
+canvas {
+  margin-bottom: 20px;
+}
+
+#download-form {
+  display: none;
 }

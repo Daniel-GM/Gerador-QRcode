@@ -31,4 +31,28 @@ function gerarComanda() {
     comanda.appendChild(img)
     result.appendChild(comanda)
   }
+
+  const imagem = result.children
+  console.log(imagem)
+  for (let index = 0; index < imagem.length; index++) {
+    const div = imagem[index]
+    html2canvas(div).then(function(canvas) {
+      result.appendChild(canvas)
+    });
+    div.style.display = 'none'
+  }
+  const download = document.getElementById('download-form')
+  download.style.display = 'inline'
 }
+
+document.getElementById('download-form').addEventListener("click", function() {
+  debugger
+  var imagens = document.querySelectorAll("canvas")
+  for (var i = 0; i < imagens.length; i++) {
+      var image = imagens[i]
+      var link = document.createElement("a")
+      link.href = image.toDataURL('image/png')
+      link.download = `comanda-${i+1}`
+      link.click()
+  }
+})
