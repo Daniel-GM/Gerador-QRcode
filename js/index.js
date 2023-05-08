@@ -31,6 +31,7 @@ function gerarComanda() {
     result.appendChild(comanda)
   }
 
+  debugger
   const imagem = result.children
   for (let index = 0; index < imagem.length; index++) {
     const div = imagem[index]
