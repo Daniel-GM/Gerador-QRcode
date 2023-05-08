@@ -40,6 +40,7 @@ function gerarComanda() {
     });
     div.style.display = 'none'
   }
+  
   const download = document.getElementById('download-form')
   download.style.display = 'inline'
 }
