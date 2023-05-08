@@ -60,3 +60,24 @@ document.getElementById('download-form').addEventListener("click", function() {
       saveAs(content, "comandas.zip")
   })
 })
+
+document.querySelector("#form-logo").addEventListener("change", function() {
+  const texto = document.querySelector("#file-count-logo")
+  if(this.files.length > 0) {
+    texto.textContent = "Com logo"
+    texto.style.color = "green"
+  }
+  else if(this.files.length == 0) {
+    texto.textContent = "Sem logo"
+    texto.style.color = "red"
+  }
+})
+
+document.querySelector("#form-photo").addEventListener("change", function() {
+  var fileCount = this.files.length;
+  document.querySelector("#file-count-qrcode").textContent = fileCount;
+  if(fileCount == 0)
+    document.querySelector(".text-qrcode").style.color = 'red'
+  else if(fileCount > 0)
+  document.querySelector(".text-qrcode").style.color = 'green'
+});

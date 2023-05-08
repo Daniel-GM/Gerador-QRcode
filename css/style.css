@@ -88,3 +88,17 @@ canvas {
   color: #fff;
   margin: 0;
 }
+
+p.text-qrcode,
+#file-count-logo {
+  margin: 0 0 20px 0;
+}
+
+#file-count-logo,
+.text-qrcode {
+  color: red;
+}
+
+.file-label {
+  margin-bottom: 5px;
+}
