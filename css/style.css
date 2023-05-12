@@ -115,7 +115,7 @@ input[type="radio"]:checked+label.icon-option {
 
 div#result,
 div#result-qrcode {
-  height: 408px;
+  height: 0px;
   display: flex;
   flex-direction: column;
 }

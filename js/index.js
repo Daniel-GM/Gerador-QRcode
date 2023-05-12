@@ -1,4 +1,4 @@
-const option = document.getElementsByName('option')
+let option = document.getElementsByName('option')
 option.forEach(function(radio) {
   radio.addEventListener('click', function() {
     if (option[0].checked) {
@@ -22,54 +22,55 @@ function sleep(ms) {
 }
 
 async function gerarComanda() {
-  const loading = document.getElementById('loading')
-  const formLogo = document.getElementById('form-logo')
-  const formPhoto = document.getElementById('form-photo').files
-  const quantidadeQrcode = document.getElementById('input-quantidade').value
-  const dominio = document.getElementById('input-link').value
-  const result = document.getElementById('result')
-  const cor = document.getElementById('cor')
-  const download = document.getElementById('download-form')
-  const resultQrcode = document.getElementById("result-qrcode")
+  let loading = document.getElementById('loading')
+  let formLogo = document.getElementById('form-logo')
+  let formPhoto = document.getElementById('form-photo').files
+  let quantidadeInit = document.getElementById('input-init').value
+  let quantidadeQrcode = document.getElementById('input-quantidade').value
+  let dominio = document.getElementById('input-link').value
+  let result = document.getElementById('result')
+  let cor = document.getElementById('cor')
+  let download = document.getElementById('download-form')
+  let resultQrcode = document.getElementById("result-qrcode")
   download.style.display = 'none'
   resultQrcode.textContent = ''
   result.textContent = ''
-  const qrcodes = []
+  let qrcodes = []
+  let maxPorcentagem = quantidadeQrcode - quantidadeInit
   let indexMax
-
+  
   if(option[0].checked){
-    for (let index = 0, x=1; index < quantidadeQrcode; index++) {
-      loadingBar(index, quantidadeQrcode)
-      const link = `https://${dominio}.sigedelivery.com.br/consulta/#/?table=${dominio}${index+1}&domain=${dominio}`
-      const qrcode = new QRCode(resultQrcode, link)
+    for (let index = (quantidadeInit-1); index < quantidadeQrcode; index++) {
+      let link = `https://${dominio}.sigedelivery.com.br/consulta/#/?table=${dominio}${index+1}&domain=${dominio}`
+      let qrcode = new QRCode(resultQrcode, link)
       qrcodes.push(qrcode)
     }
-    indexMax = document.querySelectorAll('#result-qrcode img').length
   } else indexMax = formPhoto.length
   loading.style.display = 'none'
 
   await sleep(1000)
 
-  for (let index = 0; index < indexMax; index++) {
-    loadingBar(index, indexMax)
+  for (let index = (quantidadeInit-1), seletor = 0; index < quantidadeQrcode; index++, seletor++) {
+    console.time()
+    loadingBar(index, quantidadeQrcode, seletor, maxPorcentagem)
 
     let photo
     if(option[0].checked){
-      photo = document.querySelectorAll('#result-qrcode img')[index].src
+      photo = document.querySelectorAll('#result-qrcode img')[seletor].src
 
     } else {
-      photo = formPhoto[index]
+      photo = formPhoto[seletor]
     }
 
     /* criando a logo */
-    const logo = document.createElement('img')
+    let logo = document.createElement('img')
     logo.src = URL.createObjectURL(formLogo.files[0])
     logo.style.height = "200px"
     logo.style.width = "280px"
     /* colocando o QRcode */
-    const img = document.createElement('img')
-    const id = document.createElement("h2")
-    const sigesis = document.createElement('img')
+    let img = document.createElement('img')
+    let id = document.createElement("h2")
+    let sigesis = document.createElement('img')
 
     if(option[0].checked){
       img.src = photo
@@ -94,7 +95,7 @@ async function gerarComanda() {
     }
 
     /* criando comanda */
-    const comanda = document.createElement('div')
+    let comanda = document.createElement('div')
     comanda.classList.add('comanda')
     comanda.style.height = "1854"
     comanda.style.width = "991"
@@ -106,22 +107,28 @@ async function gerarComanda() {
     comanda.appendChild(sigesis)
     result.appendChild(comanda)
 
-    const canvas = await html2canvas(comanda)
+    let canvas = await html2canvas(comanda, { 
+      logging: false, 
+      willReadFrequently: true
+    });
     comanda.style.display = 'none'
+    
+    comanda.remove()
     result.appendChild(canvas)
+    console.timeEnd()
   }
   
   loading.style.display = 'none'
   resultQrcode.style.display = 'none'
-  download.style.display = 'inline'
+  download.style.display = 'block'
 }
 
-function loadingBar(index, indexMax) {
-  let porcentagem = ((index+1)/indexMax)*100
-  const textLoading = document.getElementById('text-loading')
+function loadingBar(index, indexMax, init, max) {
+  let porcentagem = ((init+1)/(max+1))*100
+  let textLoading = document.getElementById('text-loading')
   textLoading.innerText = `${index+1}/${indexMax}`
   loading.style.display = 'block'
-  loading.style.background = `linear-gradient(to right, #63c384 0%, #63c384 ${porcentagem.toFixed(2)}%, #161616 ${porcentagem.toFixed(2)}%)`
+  loading.style.background = `linear-gradient(to right, #63c384 0%, #63c384 ${(porcentagem).toFixed(2)}%, #161616 ${(porcentagem).toFixed(2)}%)`
 }
 
 document.getElementById('download-form').addEventListener("click", function() {
@@ -139,7 +146,7 @@ document.getElementById('download-form').addEventListener("click", function() {
 })
 
 document.querySelector("#form-logo").addEventListener("change", function() {
-  const texto = document.querySelector("#file-count-logo")
+  let texto = document.querySelector("#file-count-logo")
   if(this.files.length > 0) {
     texto.textContent = "Com logo"
     texto.style.color = "green"
