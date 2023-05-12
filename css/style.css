@@ -13,14 +13,40 @@ body {
 
 html, 
 body {
-  height: 100%;
+  height: auto;
 }
 
 body {
+  font-family: 'Noto Sans KR', sans-serif;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+#option-gerador {
+  width: 10%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 115px;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+label.icon-option {
+  opacity: 40%;
+  cursor: pointer;
+}
+
+label.icon-option:hover {
+  opacity: 65%; 
+}
+
+input[type="radio"]:checked+label.icon-option {
+  opacity: 100%;
 }
 
 #gerador {
@@ -29,12 +55,38 @@ body {
   flex-direction: column;
   align-items: center;
   width: 50%;
+  height: 55%;
+}
+
+#qrcode img {
+  width: 300px;
+  height: 300px;
+}
+
+.qrcode-img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 50%);
+}
+
+#div-qrcode,
+#div-link {
+  display: flex; 
+  flex-direction: column; 
+  align-items: center;
+  width: 100%;
+}
+
+#div-qrcode {
+  display: none;
 }
 
 .file-label, 
 .btn-form, 
 #download-form,
-#loading {
+#loading, 
+.input-text {
   background-color: var(--cor-secundaria);
   color: var(--cor-primaria);
   text-align: center;
@@ -42,6 +94,10 @@ body {
   border-radius: 200px;
   margin-bottom: 20px;
   width: 50%;
+}
+
+.input-text {
+  text-align: center;
 }
 
 #cor {
@@ -57,10 +113,15 @@ body {
   display: none;
 }
 
-div#result {
+div#result,
+div#result-qrcode {
   height: 408px;
   display: flex;
   flex-direction: column;
+}
+
+div#result-qrcode {
+  visibility: hidden;
 }
 
 .comanda {
