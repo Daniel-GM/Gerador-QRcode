@@ -22,7 +22,6 @@ function sleep(ms) {
 }
 
 async function gerarComanda() {
-  debugger
   const loading = document.getElementById('loading')
   const formLogo = document.getElementById('form-logo')
   const formPhoto = document.getElementById('form-photo').files
