@@ -32,6 +32,8 @@ async function gerarComanda() {
   let cor = document.getElementById('cor')
   let download = document.getElementById('download-form')
   let resultQrcode = document.getElementById("result-qrcode")
+  let botao = document.querySelector('.btn-form')
+  botao.disabled = true
   download.style.display = 'none'
   resultQrcode.textContent = ''
   result.textContent = ''
@@ -51,7 +53,7 @@ async function gerarComanda() {
   await sleep(1000)
 
   for (let index = (quantidadeInit-1), seletor = 0; index < quantidadeQrcode; index++, seletor++) {
-    console.time()
+    let inicio = performance.now()
     loadingBar(index, quantidadeQrcode, seletor, maxPorcentagem)
 
     let photo
@@ -115,9 +117,8 @@ async function gerarComanda() {
     
     comanda.remove()
     result.appendChild(canvas)
-    console.timeEnd()
   }
-  
+  botao.disabled = false
   loading.style.display = 'none'
   resultQrcode.style.display = 'none'
   download.style.display = 'block'
