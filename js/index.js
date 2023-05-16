@@ -121,6 +121,7 @@ async function gerarComanda() {
     site.style.letterSpacing = '2px'
     site.style.color = corSite.value
 
+    /* criando cardapio */
     if (index == quantidadeQrcode) {
       let getSrc
       if(option[0].checked) {
@@ -186,7 +187,6 @@ async function gerarComanda() {
 }
 
 function loadingBar(index, indexMax, init, max) {
-  debugger
   let porcentagem = ((init+1)/(max+2))*100
   let textLoading = document.getElementById('text-loading')
   textLoading.innerText = `${index+1}/${++indexMax}`
@@ -197,13 +197,17 @@ function loadingBar(index, indexMax, init, max) {
 document.getElementById('download-form').addEventListener("click", function() {
   var zip = new JSZip()
   var imagens = document.querySelectorAll("#result canvas")
+  let quantidadeInit = document.getElementById('input-init').value
   for (var i = 0; i < imagens.length; i++) {
       var image = imagens[i]
       var imgData = image.toDataURL('image/png').replace(/^data:image\/(png|jpg);base64,/, "")
-      if((i+1) != imagens.length)
-        zip.file(`comanda-${i+1}.png`, imgData, {base64: true})
-      else
-        zip.file(`Cardápio.png`, imgData, {base64: true})
+      if((i+1) != imagens.length){
+        if(option[0].checked){
+          zip.file(`comanda-${quantidadeInit}.png`, imgData, {base64: true})
+          quantidadeInit++
+        }
+        else zip.file(`comanda-${i+1}.png`, imgData, {base64: true})  
+      } else zip.file(`Cardápio.png`, imgData, {base64: true})
   }
   zip.generateAsync({type:"blob"})
   .then(function(content) {
