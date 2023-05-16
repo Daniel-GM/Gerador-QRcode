@@ -49,6 +49,13 @@ input[type="radio"]:checked+label.icon-option {
   opacity: 100%;
 }
 
+h5 {
+  font-family: 'poppins';
+  font-weight: 500;
+  font-size: 16px;
+  margin: 0px;
+}
+
 #gerador {
   display: flex;
   justify-content: center;
@@ -100,7 +107,34 @@ input[type="radio"]:checked+label.icon-option {
   text-align: center;
 }
 
-#cor {
+div#div-cor {
+  width: 50%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.grupo-cor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#cor,
+#cor-site {
+  position: absolute;
+  opacity: 0;
+}
+
+#pseudo-color-input,
+#pseudo-color-input-text {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: solid 1px #fff;
+  border-radius: 100px;
+  position: relative;
+  z-index: 1;
+  cursor: pointer;
   margin-bottom: 20px;
 }
 
@@ -128,7 +162,7 @@ div#result-qrcode {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
+  padding: 20px 20px 0px 20px;
   margin-bottom: 20px;
 }
 
@@ -156,6 +190,7 @@ p.text-qrcode,
 }
 
 #file-count-logo,
+#file-count-logo-sigesis,
 .text-qrcode {
   color: red;
 }

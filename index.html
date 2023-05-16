@@ -21,9 +21,13 @@
       <label for="radio-qrcode" class="icon-option"><img src="arquivos/icon/qr_code_scanner_white_24dp.svg"></label>
     </div>
 
-    <label for="form-logo" class="file-label">Selecione a Logo</label>
+    <label for="form-logo" class="file-label">Selecione a Logo do cliente</label>
     <input type="file" class="file-input" id="form-logo" name="photos">
     <span id="file-count-logo">Sem logo</span>
+
+    <label for="form-logo-sigesis" class="file-label">Selecione a Logo do Sigesis</label>
+    <input type="file" class="file-input" id="form-logo-sigesis" name="photos">
+    <span id="file-count-logo-sigesis">Sem logo</span>
 
     <div id="div-qrcode">
       <label for="form-photo" class="file-label">Selecione os QRCode</label>
@@ -32,12 +36,27 @@
     </div>
 
     <div id="div-link">
+      <h5>Nome do domínio</h5>
       <input type="text" placeholder="Nome do domínio" class="input-text" id="input-link">
+      <h5>Numero mínimo de comandas</h5>
       <input type="number" placeholder="Número inicial de QRCode" class="input-text" id="input-init">
+      <h5>Numero máximo de comandas</h5>
       <input type="number" placeholder="Número final de QRCode" class="input-text" id="input-quantidade">
     </div>
 
-    <input type="color" id="cor">
+    <div id="div-cor">
+      <div class="grupo-cor">
+        <h5>Cor da comanda</h5>
+        <input type="color" id="cor" value="#0A7269">
+        <label for="cor" id="pseudo-color-input"></label>
+      </div>
+      
+      <div class="grupo-cor">
+        <h5>Cor do texto</h5>
+        <input type="color" id="cor-site" value="#FFFFFF">
+        <label for="cor-site" id="pseudo-color-input-text"></label>
+      </div>
+    </div>
 
     <button class="btn-form" type="submit" onclick="gerarComanda()">Gerar comanda</button>
 
