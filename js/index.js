@@ -206,6 +206,8 @@ document.getElementById('download-form').addEventListener("click", function() {
   var zip = new JSZip()
   var imagens = document.querySelectorAll("#result canvas")
   let quantidadeInit = document.getElementById('input-init').value
+  let valorMax = document.getElementById('input-quantidade').value
+  let valorMin = quantidadeInit
   for (var i = 0; i < imagens.length; i++) {
       var image = imagens[i]
       var imgData = image.toDataURL('image/png').replace(/^data:image\/(png|jpg);base64,/, "")
@@ -219,7 +221,7 @@ document.getElementById('download-form').addEventListener("click", function() {
   }
   zip.generateAsync({type:"blob"})
   .then(function(content) {
-      saveAs(content, "comandas.zip")
+      saveAs(content, `comandas ${valorMin}-${valorMax}.zip`)
   })
 })
 
