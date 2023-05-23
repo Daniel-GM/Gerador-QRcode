@@ -205,6 +205,7 @@ function loadingBar(index, indexMax, init, max) {
 document.getElementById('download-form').addEventListener("click", function() {
   var zip = new JSZip()
   var imagens = document.querySelectorAll("#result canvas")
+  let nome = document.getElementById('input-link').value
   let quantidadeInit = document.getElementById('input-init').value
   let valorMax = document.getElementById('input-quantidade').value
   let valorMin = quantidadeInit
@@ -221,7 +222,7 @@ document.getElementById('download-form').addEventListener("click", function() {
   }
   zip.generateAsync({type:"blob"})
   .then(function(content) {
-      saveAs(content, `comandas ${valorMin}-${valorMax}.zip`)
+      saveAs(content, `${nome} ${valorMin} - ${valorMax}.zip`)
   })
 })
 
