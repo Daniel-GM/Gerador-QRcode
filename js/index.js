@@ -153,7 +153,8 @@ async function gerarComanda() {
 
       let logoSigesis = document.createElement('img')
       logoSigesis.src = URL.createObjectURL(document.querySelector("#form-logo-sigesis").files[0])
-      logoSigesis.style.width = '75%'
+      logoSigesis.style.width = '260px'
+      logoSigesis.style.height = '69px'
 
       comanda.appendChild(logo)
       comanda.appendChild(id)
