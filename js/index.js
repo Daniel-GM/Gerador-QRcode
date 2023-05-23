@@ -34,6 +34,7 @@ async function gerarComanda() {
   let download = document.getElementById('download-form')
   let resultQrcode = document.getElementById("result-qrcode")
   let botao = document.querySelector('.btn-form')
+  let cardapioChecked = document.querySelector('#cardapio')
   botao.disabled = true
   download.style.display = 'none'
   resultQrcode.textContent = ''
@@ -62,9 +63,15 @@ async function gerarComanda() {
 
   await sleep(1000)
 
+  if(!(cardapioChecked.checked)) {
+    quantidadeQrcode--
+    maxPorcentagem--
+  }
+
   for (let index = (quantidadeInit-1), seletor = 0; index <= quantidadeQrcode; index++, seletor++) {
     let photo
-    if(option[0].checked && index != quantidadeQrcode){
+    
+    if(option[0].checked){
       loadingBar(index, quantidadeQrcode, seletor, maxPorcentagem)
       photo = document.querySelectorAll('#result-qrcode img')[seletor].src
     } else if (index != quantidadeQrcode) {
@@ -122,7 +129,7 @@ async function gerarComanda() {
     site.style.color = corSite.value
 
     /* criando cardapio */
-    if (index == quantidadeQrcode) {
+    if (index == quantidadeQrcode && cardapioChecked.checked) {
       let getSrc
       if(option[0].checked) {
         getSrc = document.querySelectorAll('#result-qrcode img')[seletor]
@@ -180,6 +187,7 @@ async function gerarComanda() {
     
     // comanda.remove()
     result.appendChild(canvas)
+    // debugger
   }
   botao.disabled = false
   loading.style.display = 'none'
