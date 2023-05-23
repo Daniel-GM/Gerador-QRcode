@@ -113,7 +113,8 @@ div#div-cor {
   justify-content: space-around;
 }
 
-.grupo-cor {
+.grupo-cor, 
+.div-cardapio {
   display: flex;
   flex-direction: column;
   align-items: center;

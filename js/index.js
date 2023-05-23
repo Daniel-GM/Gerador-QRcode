@@ -7,12 +7,14 @@ option.forEach(function(radio) {
       document.getElementById('result').innerHTML = ''
       document.getElementById("result-qrcode").textContent = ''
       document.getElementById('download-form').style.display = 'none'
+      document.getElementsByClassName('div-cardapio')[0].style.display = 'flex'
     } else {
       document.getElementById('div-link').style.display = 'none'
       document.getElementById('div-qrcode').style.display = 'flex'
       document.getElementById('result').innerHTML = ''
       document.getElementById("result-qrcode").textContent = ''
       document.getElementById('download-form').style.display = 'none'
+      document.getElementsByClassName('div-cardapio')[0].style.display = 'none'
     }
   })
 })
@@ -40,6 +42,7 @@ async function gerarComanda() {
   resultQrcode.textContent = ''
   result.textContent = ''
   let maxPorcentagem = quantidadeQrcode - quantidadeInit
+
   if(option[0].checked){
     for (let index = (quantidadeInit-1); index <= quantidadeQrcode; index++) {
       let link
@@ -50,8 +53,7 @@ async function gerarComanda() {
       }
       new QRCode(resultQrcode, link)
     }
-  }
-  else {
+  } else {
     let link
     link = `https://${dominio}.sigedelivery.com.br/cardapio-digital/`
     new QRCode(resultQrcode, link)
@@ -184,10 +186,7 @@ async function gerarComanda() {
       willReadFrequently: true
     });
     comanda.style.display = 'none'
-    
-    // comanda.remove()
     result.appendChild(canvas)
-    // debugger
   }
   botao.disabled = false
   loading.style.display = 'none'
