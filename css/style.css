@@ -198,3 +198,9 @@ p.text-qrcode,
 .file-label {
   margin-bottom: 5px;
 }
+
+#cor,
+#cor-site,
+.text-label {
+  cursor: pointer;
+}
