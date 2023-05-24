@@ -228,13 +228,16 @@ document.getElementById('download-form').addEventListener("click", function() {
 
 document.querySelector("#form-logo").addEventListener("change", function() {
   let texto = document.querySelector("#file-count-logo")
+  let logoImg = document.getElementById('file-img-logo')
   if(this.files.length > 0) {
-    texto.textContent = "Com logo"
-    texto.style.color = "green"
+    // let logo = document.getElementById('form-logo')
+    texto.style.display = "none"
+    logoImg.style.display = "block"
+    logoImg.src = URL.createObjectURL(this.files[0])
   }
   else if(this.files.length == 0) {
-    texto.textContent = "Sem logo"
-    texto.style.color = "red"
+    texto.style.display = "block"
+    logoImg.style.display = "none"
   }
 })
 

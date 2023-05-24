@@ -1,6 +1,13 @@
 :root{
   --cor-primaria: #1b1b1b;
   --cor-secundaria: #fff;
+  --placeholder: #1b1b1b
+}
+
+::placeholder {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 16px;
+  color: var(--placeholder);
 }
 
 html, 
@@ -185,8 +192,15 @@ canvas {
   margin: 0;
 }
 
+#file-img-logo {
+  height: 100px;
+  width: 120px;
+  display: none;
+}
+
 p.text-qrcode,
-#file-count-logo {
+#file-count-logo,
+#file-img-logo {
   margin: 0 0 20px 0;
 }
 
