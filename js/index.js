@@ -37,11 +37,15 @@ async function gerarComanda() {
   let resultQrcode = document.getElementById("result-qrcode")
   let botao = document.querySelector('.btn-form')
   let cardapioChecked = document.querySelector('#cardapio')
+  let alertQrcode = document.querySelector('#alert-qrcode')
   botao.disabled = true
   download.style.display = 'none'
   resultQrcode.textContent = ''
   result.textContent = ''
   let maxPorcentagem = quantidadeQrcode - quantidadeInit
+  
+  alertQrcode.style.display = 'block'
+  await sleep(10)
 
   if(option[0].checked){
     for (let index = (quantidadeInit-1); index <= quantidadeQrcode; index++) {
@@ -61,6 +65,7 @@ async function gerarComanda() {
     maxPorcentagem = quantidadeQrcode
     quantidadeInit = 1
   }
+  alertQrcode.style.display = 'none'
   loading.style.display = 'none'
 
   await sleep(1000)

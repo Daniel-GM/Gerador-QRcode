@@ -219,3 +219,7 @@ p.text-qrcode,
 .text-label {
   cursor: pointer;
 }
+
+#alert-qrcode {
+  display: none;
+}
