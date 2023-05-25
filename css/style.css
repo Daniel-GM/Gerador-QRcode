@@ -201,7 +201,7 @@ canvas {
 p.text-qrcode,
 #file-count-logo,
 #file-img-logo {
-  margin: 0 0 20px 0;
+  margin: 0 0 5px 0;
 }
 
 #file-count-logo,
@@ -211,7 +211,7 @@ p.text-qrcode,
 }
 
 .file-label {
-  margin-bottom: 5px;
+  margin-bottom: 20px;
 }
 
 #cor,

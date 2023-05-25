@@ -12,8 +12,7 @@ function lightMode() {
   document.documentElement.style.setProperty('--placeholder', '#aaa')
 
   lightMode.style.display = 'none'
-  darkMode.style.display = 'block'
-  
+  darkMode.style.display = 'block' 
 }
 
 function darkMode() {

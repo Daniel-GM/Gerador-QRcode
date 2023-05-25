@@ -1,16 +1,19 @@
 #light-mode,
 #dark-mode {
-  position: absolute;
+  position: fixed;
   bottom: 2%;
   right: 2%;
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  border-color: #fff;
+  border: solid 1px #fff;
 }
 
-#light-mode {
-  /* display: none; */
+#light-mode:hover,
+#dark-mode:hover {
+  width: 70px;
+  height: 70px;
+  transition: 0.5s;
 }
 
 #dark-mode {

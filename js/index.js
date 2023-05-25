@@ -144,7 +144,6 @@ async function gerarComanda() {
         sigesis.style.position = "absolute"
         sigesis.style.transform = "translate(0%, 850%)"
       }
-      console.log(getSrc.src)
       
       id.textContent = 'Acesse o nosso Cardápio Digital'
       id.style.color = corSite.value
@@ -160,8 +159,14 @@ async function gerarComanda() {
       site.innerHTML = 'Desenvolvido por'
       site.style.marginBottom = '0px'
 
+      /* colocando a logo sigesis no cardapio */
       let logoSigesis = document.createElement('img')
-      logoSigesis.src = URL.createObjectURL(document.querySelector("#form-logo-sigesis").files[0])
+
+      let checkedInput = document.querySelector('input[name="option-sigesis"]:checked')
+      let label = document.querySelector('label[for="' + checkedInput.id + '"]')
+      let colorSigesis = label.querySelector('img')
+      logoSigesis.src = colorSigesis.src
+
       logoSigesis.style.width = '260px'
       logoSigesis.style.height = '69px'
 
@@ -238,18 +243,6 @@ document.querySelector("#form-logo").addEventListener("change", function() {
   else if(this.files.length == 0) {
     texto.style.display = "block"
     logoImg.style.display = "none"
-  }
-})
-
-document.querySelector("#form-logo-sigesis").addEventListener("change", function() {
-  let texto = document.querySelector("#file-count-logo-sigesis")
-  if(this.files.length > 0) {
-    texto.textContent = "Com logo"
-    texto.style.color = "green"
-  }
-  else if(this.files.length == 0) {
-    texto.textContent = "Sem logo"
-    texto.style.color = "red"
   }
 })
 

@@ -1,0 +1,35 @@
+#div-sigesis {
+  display: flex;
+  flex-direction: row;
+  width: 50%;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+label.icon-sigesis {
+  opacity: 40%;
+  cursor: pointer;
+  height: 53px;
+}
+
+label.icon-sigesis:hover {
+  opacity: 65%; 
+}
+
+input[type="radio"]:checked+label.icon-sigesis {
+  border: solid 2px var(--cor-secundaria);
+  border-radius: 20px;
+}
+
+label.icon-sigesis {
+  width: 200px;
+}
+
+#img-link,
+#img-qrcode {
+  width: 100%;
+}
+
+.icon-sigesis img {
+  margin: auto;
+}
