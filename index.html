@@ -33,26 +33,29 @@
     <label for="form-logo" class="file-label">Selecione a Logo do cliente</label>
     <input type="file" class="file-input" id="form-logo" name="photos">
 
+    <div id="div-qrcode">
+      <p class="text-qrcode">QRCode: <span id="file-count-qrcode">0</span></p>
+      <label for="form-photo" class="file-label">Selecione os QRCode</label>
+      <input type="file" class="file-input" id="form-photo" name="photos" multiple>
+    </div>
+
+    <div id="div-dominio">
+      <h5>Nome do domínio</h5>
+      <input type="text" placeholder="Nome do domínio" class="input-text" id="input-link">
+    </div>
+    
+    <div id="div-link">
+      <h5>Numero mínimo de comandas</h5>
+      <input type="number" placeholder="Número inicial de QRCode" class="input-text" id="input-init">
+      <h5>Numero máximo de comandas</h5>
+      <input type="number" placeholder="Número final de QRCode" class="input-text" id="input-quantidade">
+    </div>
+
     <div id="div-sigesis">
       <input type="radio" name="option-sigesis" id="sigesis-white" checked/>
       <label for="sigesis-white" class="icon-option icon-sigesis"><img id="img-link" src="arquivos/icon/logo-sigesis-branca.png"></label>
       <input type="radio" name="option-sigesis" id="sigesis-black"/>
       <label for="sigesis-black" class="icon-option icon-sigesis"><img id="img-qrcode" src="arquivos/icon/logo-sigesis-preta.png"></label>
-    </div>
-
-    <div id="div-qrcode">
-      <label for="form-photo" class="file-label">Selecione os QRCode</label>
-      <input type="file" class="file-input" id="form-photo" name="photos" multiple>
-      <p class="text-qrcode">QRCode: <span id="file-count-qrcode">0</span></p>
-    </div>
-
-    <div id="div-link">
-      <h5>Nome do domínio</h5>
-      <input type="text" placeholder="Nome do domínio" class="input-text" id="input-link">
-      <h5>Numero mínimo de comandas</h5>
-      <input type="number" placeholder="Número inicial de QRCode" class="input-text" id="input-init">
-      <h5>Numero máximo de comandas</h5>
-      <input type="number" placeholder="Número final de QRCode" class="input-text" id="input-quantidade">
     </div>
 
     <div id="div-cor">
@@ -71,7 +74,7 @@
 
     <div class="div-cardapio">
       <label for="cardapio" class="text-label">Gerar Cardápio</label>
-      <input type="checkbox" id="cardapio">
+      <input type="checkbox" id="cardapio" onclick="inputName()">
     </div>
 
     <button class="btn-form" type="submit" onclick="gerarComanda()">Gerar comanda</button>
@@ -90,5 +93,7 @@
 
   <script src="js/index.js"></script>
   <script src="js/mode.js"></script>
+  <script src="js/PPI.js"></script>
+  <script src="js/onclick.js"></script>
 </body>
 </html>

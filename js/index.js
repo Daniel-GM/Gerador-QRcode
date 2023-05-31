@@ -1,8 +1,10 @@
 let option = document.getElementsByName('option')
 option.forEach(function(radio) {
+  let cardapioChecked = document.querySelector('#cardapio')
   radio.addEventListener('click', function() {
     if (option[0].checked) {
       document.getElementById('div-qrcode').style.display = 'none'
+      document.getElementById('div-dominio').style.display = 'flex'
       document.getElementById('div-link').style.display = 'flex'
       document.getElementById('result').innerHTML = ''
       document.getElementById("result-qrcode").textContent = ''
@@ -14,7 +16,10 @@ option.forEach(function(radio) {
       document.getElementById('result').innerHTML = ''
       document.getElementById("result-qrcode").textContent = ''
       document.getElementById('download-form').style.display = 'none'
-      document.getElementsByClassName('div-cardapio')[0].style.display = 'none'
+      if(cardapioChecked.checked)
+        document.getElementById('div-dominio').style.display = 'flex'
+      else
+        document.getElementById('div-dominio').style.display = 'none'
     }
   })
 })
@@ -81,7 +86,7 @@ async function gerarComanda() {
     if(option[0].checked){
       loadingBar(index, quantidadeQrcode, seletor, maxPorcentagem)
       photo = document.querySelectorAll('#result-qrcode img')[seletor].src
-    } else if (index != quantidadeQrcode) {
+    } else if (index != quantidadeQrcode ||  cardapioChecked.checked == false) {
       loadingBar(index, quantidadeQrcode, seletor, maxPorcentagem-1)
       photo = formPhoto[seletor]
     }
@@ -89,8 +94,8 @@ async function gerarComanda() {
     /* criando a logo */
     let logo = document.createElement('img')
     logo.src = URL.createObjectURL(formLogo.files[0])
-    logo.style.height = "200px"
-    logo.style.width = "280px"
+    logo.style.height = "100px"
+    logo.style.width = "175px"
 
     /* colocando o QRcode */
     let img = document.createElement('img')
@@ -101,29 +106,34 @@ async function gerarComanda() {
       img.src = photo
       img.style.padding = "10px 10px"
       img.style.background = "#fff"
+      img.style.width = "229.565px"
 
       id.style.fontSize = "72px"
       id.style.color = "#000"
       id.style.margin = "0px"
-      id.style.width = "276px"
+      id.style.width = "249.6px"
       id.style.textAlign = "center"
       id.style.background = "#fff"
+      id.style.marginTop = "-0.5px"
       id.textContent = index+1
 
       sigesis.src = "arquivos/icon/logo-qrcode.jpg"
       sigesis.style.position = "absolute"
-      sigesis.style.transform = "translate(0%, 700%)"
-    } else if (index != quantidadeQrcode) {
+      sigesis.style.transform = "translate(0%, 450%)"
+    } else if (index != quantidadeQrcode ||  cardapioChecked.checked == false) {
       img.src = URL.createObjectURL(photo)
-      img.style.height = "357px"
-      img.style.width = "280px"
+      img.style.height = "334.509px"
+      img.style.width = "262.36px"
+
+      id.style.display = "none"
+      sigesis.style.display = "none"
     }
 
     /* criando comanda */
     let comanda = document.createElement('div')
     comanda.classList.add('comanda')
-    comanda.style.height = "1854"
-    comanda.style.width = "991"
+    comanda.style.height = "509px"
+    comanda.style.width = "263px"
     comanda.style.backgroundColor = cor.value
 
     /* site na comanda */
@@ -131,7 +141,7 @@ async function gerarComanda() {
     site.innerHTML = 'www.sigesis.com.br'
     site.style.fontFamily = 'poppins, sans-serif'
     site.style.fontWeight = '400'
-    site.style.margin = '20px 0px 10px'
+    site.style.margin = '10px 0px 10px'
     site.style.letterSpacing = '2px'
     site.style.color = corSite.value
 
@@ -140,14 +150,14 @@ async function gerarComanda() {
       let getSrc
       if(option[0].checked) {
         getSrc = document.querySelectorAll('#result-qrcode img')[seletor]
-        sigesis.style.transform = "translate(0%, 850%)"
+        sigesis.style.transform = "translate(0%, 600%)"
       } else {
         getSrc = document.querySelectorAll('#result-qrcode img')[0]
         comanda.style.width = '280px'
         sigesis.src = 'arquivos/icon/logo-qrcode.jpg'
         id.style.margin = '0px'
         sigesis.style.position = "absolute"
-        sigesis.style.transform = "translate(0%, 850%)"
+        sigesis.style.transform = "translate(0%, 600%)"
       }
       
       id.textContent = 'Acesse o nosso Cardápio Digital'
@@ -163,6 +173,9 @@ async function gerarComanda() {
 
       site.innerHTML = 'Desenvolvido por'
       site.style.marginBottom = '0px'
+      if(option[1].checked) {
+        site.style.marginTop = '2px'
+      }
 
       /* colocando a logo sigesis no cardapio */
       let logoSigesis = document.createElement('img')
@@ -172,8 +185,8 @@ async function gerarComanda() {
       let colorSigesis = label.querySelector('img')
       logoSigesis.src = colorSigesis.src
 
-      logoSigesis.style.width = '260px'
-      logoSigesis.style.height = '69px'
+      logoSigesis.style.width = '154.49px'
+      logoSigesis.style.height = '41px'
 
       comanda.appendChild(logo)
       comanda.appendChild(id)
@@ -192,6 +205,7 @@ async function gerarComanda() {
     }
 
     let canvas = await html2canvas(comanda, { 
+      scale: 4,
       logging: false, 
       willReadFrequently: true
     });
@@ -218,21 +232,26 @@ document.getElementById('download-form').addEventListener("click", function() {
   let nome = document.getElementById('input-link').value
   let quantidadeInit = document.getElementById('input-init').value
   let valorMax = document.getElementById('input-quantidade').value
+  let cardapioChecked = document.querySelector('#cardapio')
   let valorMin = quantidadeInit
   for (var i = 0; i < imagens.length; i++) {
-      var image = imagens[i]
-      var imgData = image.toDataURL('image/png').replace(/^data:image\/(png|jpg);base64,/, "")
-      if((i+1) != imagens.length){
-        if(option[0].checked){
-          zip.file(`comanda-${quantidadeInit}.png`, imgData, {base64: true})
-          quantidadeInit++
-        }
-        else zip.file(`comanda-${i+1}.png`, imgData, {base64: true})  
-      } else zip.file(`Cardápio.png`, imgData, {base64: true})
+    var image = imagens[i]
+    var imgData = image.toDataURL('image/png').replace(/^data:image\/(png|jpg);base64,/, "")
+    debugger
+    if((i+1) == imagens.length && cardapioChecked.checked){
+      zip.file(`Cardápio.png`, imgData, {base64: true})
+    } else {
+      if(option[0].checked){
+        zip.file(`comanda-${quantidadeInit}.png`, imgData, {base64: true})
+        quantidadeInit++
+      }
+      else zip.file(`comanda-${i+1}.png`, imgData, {base64: true})  
+    }
   }
   zip.generateAsync({type:"blob"})
   .then(function(content) {
-      saveAs(content, `${nome} ${valorMin} - ${valorMax}.zip`)
+      if (option[0].checked) saveAs(content, `${nome} ${valorMin} - ${valorMax}.zip`)
+      else saveAs(content, `${nome}.zip`)
   })
 })
 

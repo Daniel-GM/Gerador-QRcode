@@ -85,7 +85,8 @@ h5 {
 }
 
 #div-qrcode,
-#div-link {
+#div-link,
+#div-dominio {
   display: flex; 
   flex-direction: column; 
   align-items: center;
@@ -155,11 +156,14 @@ div#div-cor {
   display: none;
 }
 
-div#result,
+div#result, 
 div#result-qrcode {
   height: 0px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  padding: 0px 20px;
 }
 
 div#result-qrcode {
@@ -175,7 +179,7 @@ div#result-qrcode {
 }
 
 canvas {
-  margin-bottom: 20px;
+  margin: 0px 20px 20px;
 }
 
 #download-form,
