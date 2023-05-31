@@ -4,6 +4,7 @@
   width: 50%;
   justify-content: space-around;
   margin-bottom: 20px;
+  display: none;
 }
 
 label.icon-sigesis {
