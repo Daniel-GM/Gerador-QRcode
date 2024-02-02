@@ -7,4 +7,3 @@ function getPPI() {
 }
 
 const ppi = getPPI()
-console.log(`PPI da tela: ${ppi}`)

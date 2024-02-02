@@ -40,15 +40,15 @@
     </div>
 
     <div id="div-dominio">
-      <h5>Nome do domínio</h5>
-      <input type="text" placeholder="Nome do domínio" class="input-text" id="input-link">
+      <h5>Nome da instância</h5>
+      <input type="text" placeholder="Digitar somente o nome da instância" class="input-text" id="input-link">
     </div>
     
     <div id="div-link">
-      <h5>Numero mínimo de comandas</h5>
-      <input type="number" placeholder="Número inicial de QRCode" class="input-text" id="input-init">
-      <h5>Numero máximo de comandas</h5>
-      <input type="number" placeholder="Número final de QRCode" class="input-text" id="input-quantidade">
+      <h5>Numero inicial das comandas</h5>
+      <input type="number" placeholder="Número inicial" class="input-text" id="input-init">
+      <h5>Numero final das comandas</h5>
+      <input type="number" placeholder="Número final" class="input-text" id="input-quantidade">
     </div>
 
     <div id="div-sigesis">
@@ -77,7 +77,7 @@
       <input type="checkbox" id="cardapio" onclick="inputName()">
     </div>
 
-    <button class="btn-form" type="submit" onclick="gerarComanda()">Gerar comanda</button>
+    <button class="btn-form" type="submit" onclick="verificarInstancia()">Gerar comanda</button>
 
     <p id="alert-qrcode">Gerando QRCode</p>
 

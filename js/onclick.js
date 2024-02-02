@@ -4,7 +4,6 @@ function inputName() {
   let dominio = document.getElementById('div-dominio')
   let logoSigesis = document.getElementById('div-sigesis')
   
-  debugger
   if(cardapioChecked.checked) logoSigesis.style.display = 'flex'
   else logoSigesis.style.display = 'none'
   

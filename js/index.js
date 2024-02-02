@@ -28,6 +28,25 @@ function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms))
 }
 
+function verificarInstancia() {
+  let dominio = document.getElementById('input-link').value
+  const url = `https://www.${dominio}.sigedelivery.com.br`
+
+  fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(url)}`)
+    .then(response => response.json())
+    .then(data => {
+      if (data.status && data.status.http_code === 200) {
+        gerarComanda()
+      } else {
+        alert("Instância errada ou não existe. Favor corrigir a instância ou pedir para o responsável cria-la")
+      }
+    })
+    .catch(error => {
+      alert('Ocorreu um erro, atualize a página e tente novamente!')
+      console.error('Ocorreu um erro ao tentar acessar o site:', error)
+    })
+}
+
 async function gerarComanda() {
   let loading = document.getElementById('loading')
   let formLogo = document.getElementById('form-logo')
@@ -237,7 +256,6 @@ document.getElementById('download-form').addEventListener("click", function() {
   for (var i = 0; i < imagens.length; i++) {
     var image = imagens[i]
     var imgData = image.toDataURL('image/png').replace(/^data:image\/(png|jpg);base64,/, "")
-    debugger
     if((i+1) == imagens.length && cardapioChecked.checked){
       zip.file(`Cardápio.png`, imgData, {base64: true})
     } else {
