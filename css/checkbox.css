@@ -2,7 +2,7 @@ input[type="checkbox"]#cardapio {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  width: 50px;
+  width: 40px;
   height: 20px;
   background: #ddd;
   border-radius: 3em;
@@ -11,7 +11,7 @@ input[type="checkbox"]#cardapio {
   outline: none;
   -webkit-transition: all .2s ease-in-out;
   transition: all .2s ease-in-out;
-  margin-bottom: 20px;
+  margin: 0px;
 }
 
 input[type="checkbox"]#cardapio:checked {

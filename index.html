@@ -1,31 +1,39 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/checkbox.css">
   <link rel="stylesheet" href="css/mode.css">
   <link rel="stylesheet" href="css/sigesis-color.css">
+
   <link rel="icon" href="arquivos/icon/cropped-icon-1-2-192x192.webp">
+
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gerador QRcode</title>
 </head>
 
-<body>
+<body theme="dark">
   <div id="gerador">
-    <button id="light-mode" onclick="lightMode()"><img class="img-mode" src="arquivos/icon/light_mode.png"></button>
-    <button id="dark-mode" onclick="darkMode()"><img class="img-mode" src="arquivos/icon/dark_mode.png"></button>
+
     <div id="option-gerador">
-      <input type="radio" name="option" id="radio-link" checked/>
+      <input type="radio" name="option" id="radio-link" checked />
       <label for="radio-link" class="icon-option"><img id="img-link" src="arquivos/icon/link_white.svg"></label>
-      <input type="radio" name="option" id="radio-qrcode"/>
+      <input type="radio" name="option" id="radio-qrcode" />
       <label for="radio-qrcode" class="icon-option"><img id="img-qrcode" src="arquivos/icon/qr_code_white.svg"></label>
+    </div>
+
+    <div id="theme">
+      <label for="toggleTheme"><img id="theme-icon" src="arquivos/icon/light_mode.png"></label>
+      <input type="checkbox" name="toggleTheme" id="toggleTheme" onclick="toggleTheme()" checked>
     </div>
 
     <span id="file-count-logo">Sem logo</span>
@@ -40,42 +48,45 @@
     </div>
 
     <div id="div-dominio">
-      <h5>Nome da instância</h5>
+      <span>Nome da instância</span>
       <input type="text" placeholder="Digitar somente o nome da instância" class="input-text" id="input-link">
     </div>
-    
-    <div id="div-link">
-      <h5>Numero inicial das comandas</h5>
-      <input type="number" placeholder="Número inicial" class="input-text" id="input-init">
-      <h5>Numero final das comandas</h5>
-      <input type="number" placeholder="Número final" class="input-text" id="input-quantidade">
-    </div>
 
-    <div id="div-sigesis">
-      <input type="radio" name="option-sigesis" id="sigesis-white" checked/>
-      <label for="sigesis-white" class="icon-option icon-sigesis"><img id="img-link" src="arquivos/icon/logo-sigesis-branca.png"></label>
-      <input type="radio" name="option-sigesis" id="sigesis-black"/>
-      <label for="sigesis-black" class="icon-option icon-sigesis"><img id="img-qrcode" src="arquivos/icon/logo-sigesis-preta.png"></label>
+    <div id="div-link">
+      <span>Numero inicial das comandas</span>
+      <input type="number" placeholder="Número inicial" class="input-text" id="input-init">
+      <span>Numero final das comandas</span>
+      <input type="number" placeholder="Número final" class="input-text" id="input-quantidade">
     </div>
 
     <div id="div-cor">
       <div class="grupo-cor">
-        <label for="cor" class="text-label"><h5>Cor da comanda</h5></label>
+        <label for="cor" class="text-label">Cor da comanda</label>
         <input type="color" id="cor" value="#0A7269">
         <label for="cor" id="pseudo-color-input"></label>
       </div>
-      
+
       <div class="grupo-cor">
-        <label for="cor-site" class="text-label"><h5>Cor do texto</h5></label>
+        <label for="cor-site" class="text-label">Cor do texto</label>
         <input type="color" id="cor-site" value="#FFFFFF">
         <label for="cor-site" id="pseudo-color-input-text"></label>
       </div>
+
+      <div class="div-cardapio">
+        <label for="cardapio" class="text-label">Cardápio</label>
+        <input type="checkbox" id="cardapio" onclick="inputName()">
+      </div>
     </div>
 
-    <div class="div-cardapio">
-      <label for="cardapio" class="text-label">Gerar Cardápio</label>
-      <input type="checkbox" id="cardapio" onclick="inputName()">
+    <div id="div-sigesis">
+      <input type="radio" name="option-sigesis" id="sigesis-white" checked />
+      <label for="sigesis-white" class="icon-option icon-sigesis"><img id="img-link"
+          src="arquivos/icon/logo-sigesis-branca.png"></label>
+      <input type="radio" name="option-sigesis" id="sigesis-black" />
+      <label for="sigesis-black" class="icon-option icon-sigesis"><img id="img-qrcode"
+          src="arquivos/icon/logo-sigesis-preta.png"></label>
     </div>
+
 
     <button class="btn-form" type="submit" onclick="verificarInstancia()">Gerar comanda</button>
 
@@ -95,5 +106,19 @@
   <script src="js/mode.js"></script>
   <script src="js/PPI.js"></script>
   <script src="js/onclick.js"></script>
+  <script>
+    document.getElementById('sigesis-white').addEventListener('change', function () {
+      if (this.checked) {
+        document.getElementById('div-sigesis').style.backgroundColor = 'black'
+      }
+    })
+
+    document.getElementById('sigesis-black').addEventListener('change', function () {
+      if (this.checked) {
+        document.getElementById('div-sigesis').style.backgroundColor = 'white'
+      }
+    })
+  </script>
 </body>
+
 </html>

@@ -1,13 +1,13 @@
 :root{
-  --cor-primaria: #1b1b1b;
+  --cor-primaria: #212529;
   --cor-secundaria: #fff;
-  --placeholder: #1b1b1b
+  --cor-borda: #1b1b1b;
 }
 
 ::placeholder {
   font-family: 'Noto Sans KR', sans-serif;
   font-size: 16px;
-  color: var(--placeholder);
+  color: var(--cor-primaria);
 }
 
 html, 
@@ -36,10 +36,11 @@ body {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  height: 115px;
+  margin-top: 3rem;
 }
 
-input[type="radio"] {
+input[type="radio"],
+#toggleTheme {
   display: none;
 }
 
@@ -107,7 +108,7 @@ h5 {
   text-align: center;
   padding: 5px;
   border-radius: 200px;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
   width: 50%;
 }
 
@@ -118,7 +119,14 @@ h5 {
 div#div-cor {
   width: 50%;
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
+}
+
+#div-cor div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .grupo-cor, 
@@ -139,12 +147,17 @@ div#div-cor {
   display: inline-block;
   width: 20px;
   height: 20px;
-  border: solid 1px #fff;
   border-radius: 100px;
   position: relative;
   z-index: 1;
   cursor: pointer;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
+}
+
+#pseudo-color-input,
+#pseudo-color-input-text,
+#cardapio {
+  border: solid 1px var(--cor-borda);
 }
 
 .btn-form, 
@@ -214,10 +227,6 @@ p.text-qrcode,
   color: red;
 }
 
-.file-label {
-  margin-bottom: 20px;
-}
-
 #cor,
 #cor-site,
 .text-label {
@@ -226,4 +235,15 @@ p.text-qrcode,
 
 #alert-qrcode {
   display: none;
+}
+
+span,
+.text-qrcode,
+.btn-form,
+#div-cor div,
+#div-sigesis,
+#file-count-logo,
+#file-count-logo-sigesis,
+#theme {
+  margin-top: 1.5rem;
 }

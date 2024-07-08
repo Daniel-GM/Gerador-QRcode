@@ -1,44 +1,28 @@
-function lightMode() {
-  let darkMode = document.getElementById('dark-mode')
-  let lightMode = document.getElementById('light-mode')
-  let link = document.querySelector('#img-link')
-  let qrcode = document.querySelector('#img-qrcode')
+function toggleTheme() {
+  const link = document.querySelector('#img-link')
+  const qrcode = document.querySelector('#img-qrcode')
+  const currentTheme = document.body.getAttribute('theme')
+  const newTheme = currentTheme === 'dark' ? 'light' : 'dark'
+  const themeIcon = document.getElementById('theme-icon')
+  document.body.setAttribute('theme', newTheme)
 
-  link.src = "arquivos/icon/link_black.png"
-  qrcode.src = "arquivos/icon/qr_code_black.png"
+  if (newTheme === 'dark') {
+    document.documentElement.style.setProperty('--cor-primaria', '#212529')
+    document.documentElement.style.setProperty('--cor-secundaria', '#fff')
+    document.documentElement.style.setProperty('--cor-borda', '#fff')
 
-  document.documentElement.style.setProperty('--cor-primaria', '#c3c3c3')
-  document.documentElement.style.setProperty('--cor-secundaria', '#1b1b1b')
-  document.documentElement.style.setProperty('--placeholder', '#c3c3c3')
+    themeIcon.src = 'arquivos/icon/light_mode.png'
+    themeIcon.alt = 'dark_mode'
+    link.src = "arquivos/icon/link_white.svg"
+    qrcode.src = "arquivos/icon/qr_code_white.svg"
+  } else {
+    document.documentElement.style.setProperty('--cor-primaria', '#fff')
+    document.documentElement.style.setProperty('--cor-secundaria', '#212529')
+    document.documentElement.style.setProperty('--cor-borda', '#000')
 
-  lightMode.style.display = 'none'
-  darkMode.style.display = 'block' 
+    themeIcon.src = 'arquivos/icon/dark_mode.png'
+    themeIcon.alt = 'light_mode'
+    link.src = "arquivos/icon/link_black.png"
+    qrcode.src = "arquivos/icon/qr_code_black.png"
+  }
 }
-
-function darkMode() {
-  let darkMode = document.getElementById('dark-mode')
-  let lightMode = document.getElementById('light-mode')
-  let link = document.querySelector('#img-link')
-  let qrcode = document.querySelector('#img-qrcode')
-
-  link.src = "arquivos/icon/link_white.svg"
-  qrcode.src = "arquivos/icon/qr_code_white.svg"
-
-  document.documentElement.style.setProperty('--cor-primaria', '#1b1b1b')
-  document.documentElement.style.setProperty('--cor-secundaria', '#fff')
-  document.documentElement.style.setProperty('--placeholder', '#1b1b1b')
-
-  lightMode.style.display = 'block'
-  darkMode.style.display = 'none'
-}
-
-// let inputTextFields = document.getElementsByClassName('input-text');
-// for (var i = 0; i < inputTextFields.length; i++) {
-//   inputTextFields[i].addEventListener('focus', function() {
-//     this.style.color = document.documentElement.style.getProperty('--cor-secundaria');
-//   });
-
-//   inputTextFields[i].addEventListener('blur', function() {
-//     this.style.color = 'var(--cor-primaria)';
-//   });
-// }
