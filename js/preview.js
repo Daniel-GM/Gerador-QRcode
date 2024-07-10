@@ -32,6 +32,7 @@ function preview() {
     let qrcodeNone = document.getElementById('qr-preview-none')
     let quantidadeInit = document.getElementById('input-init').value
     let fileImgLogo = document.getElementById('file-img-logo')
+    let divFileImg = document.getElementById('div-file-img')
 
     if (quantidadeInit != '') {
         saveId = quantidadeInit
@@ -59,14 +60,19 @@ function preview() {
         logo.src = URL.createObjectURL(formLogo.files[0])
         saveLogo = logo.src
         photoChanged = false
+
+        divFileImg.style.display = "block"
+        fileImgLogo.style.height = window.config.height;
+        fileImgLogo.style.width = window.config.width;
+
     } else if (formLogo.files.length == 0 && photoChanged) {
+        divFileImg.style.display = "none"
         saveLogo = "../arquivos/qrcodes/menu-white.png"
         logo.src = saveLogo
     } else {
         logo.src = saveLogo
     }
-    fileImgLogo.style.height = window.config.height;
-    fileImgLogo.style.width = window.config.width;
+
 
     logo.style.height = window.config.height;
     logo.style.width = window.config.width;
