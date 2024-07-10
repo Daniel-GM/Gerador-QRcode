@@ -27,11 +27,13 @@
   <div id="div-main">
     <div id="gerador">
       <div id="option-gerador">
-        <input type="radio" name="option" id="radio-link" checked />
+        <!-- <input type="radio" name="option" id="radio-link" checked />
         <label for="radio-link" class="icon-option"><img id="img-link" src="arquivos/icon/link_white.svg"></label>
         <input type="radio" name="option" id="radio-qrcode" />
         <label for="radio-qrcode" class="icon-option"><img id="img-qrcode"
-            src="arquivos/icon/qr_code_white.svg"></label>
+            src="arquivos/icon/qr_code_white.svg"></label> -->
+        <input type="checkbox" name="check-preview" id="check-preview" checked />
+        <label for="check-preview" class="icon-option" style="position: absolute; bottom: 20px; right: 20px;"><img id="img-link" src="arquivos/icon/preview-light.png"></label>
       </div>
 
       <div id="theme">
@@ -40,7 +42,8 @@
       </div>
 
       <span id="file-count-logo">Sem logo</span>
-      <div id="div-file-img" style="width: 249.56px; height: 100px; display: flex; justify-content: space-around; display: none;">
+      <div id="div-file-img"
+        style="width: 249.56px; height: 100px; display: flex; justify-content: space-around; display: none;">
         <img id="file-img-logo">
       </div>
       <label for="form-logo" class="file-label">Selecione a Logo do cliente</label>
@@ -76,7 +79,7 @@
 
           <div style="display: flex; flex-direction: column; align-items: center;">
             <div style="display: flex;">
-              <span style="margin: 0px;">Largura</span> 
+              <span style="margin: 0px;">Largura</span>
               <span id="largura-value">: 249.56px</span>
             </div>
             <div style="display: flex; flex-direction: column; align-items: center;">

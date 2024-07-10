@@ -31,6 +31,10 @@ body {
   align-items: center;
 }
 
+#check-preview {
+  display: none;
+}
+
 #option-gerador {
   width: 10%;
   display: flex;
@@ -45,12 +49,12 @@ input[type="radio"],
 }
 
 label.icon-option {
-  opacity: 40%;
+  opacity: 65%;
   cursor: pointer;
 }
 
 label.icon-option:hover {
-  opacity: 65%; 
+  opacity: 100%; 
 }
 
 input[type="radio"]:checked+label.icon-option {

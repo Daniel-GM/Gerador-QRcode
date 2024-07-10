@@ -13,7 +13,22 @@ document.getElementById('cor').addEventListener('input', preview)
 document.getElementById('cor-site').addEventListener('input', preview)
 document.getElementById('largura').addEventListener('change', preview)
 document.getElementById('altura').addEventListener('change', preview)
+document.getElementById('check-preview').addEventListener('change', togglePreview)
 // document.getElementById('cardapio').addEventListener('change', preview)
+
+function togglePreview() {
+    let imgLink = document.getElementById('img-link')
+    const geradorDiv = document.getElementById('gerador')
+    const previewDiv = document.getElementById('preview')
+    const checkPreview = document.getElementById('check-preview')
+    const currentTheme = document.body.getAttribute('theme')
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark'
+
+    previewDiv.style.display = checkPreview.checked ? "flex" : "none"
+    imgLink.style.opacity = checkPreview.checked ? "100%" : "50%"
+    imgLink.src = checkPreview.checked ? `arquivos/icon/preview-${newTheme}.png` : `arquivos/icon/no-preview-${newTheme}.png`
+    geradorDiv.style.width = checkPreview.checked ? "65%" : "100%"
+}
 
 function onBodyLoad() {
     linkChanged = true
@@ -131,3 +146,4 @@ function logoQrcode(comanda) {
     sigesis.style.transform = "translate(0%, 450%)"
     comanda.appendChild(sigesis)
 }
+

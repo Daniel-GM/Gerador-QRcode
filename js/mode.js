@@ -13,8 +13,8 @@ function toggleTheme() {
 
     themeIcon.src = 'arquivos/icon/light_mode.png'
     themeIcon.alt = 'dark_mode'
-    link.src = "arquivos/icon/link_white.svg"
-    qrcode.src = "arquivos/icon/qr_code_white.svg"
+    // link.src = "arquivos/icon/link_white.svg"
+    // qrcode.src = "arquivos/icon/qr_code_white.svg"
   } else {
     document.documentElement.style.setProperty('--cor-primaria', '#fff')
     document.documentElement.style.setProperty('--cor-secundaria', '#212529')
@@ -22,7 +22,8 @@ function toggleTheme() {
 
     themeIcon.src = 'arquivos/icon/dark_mode.png'
     themeIcon.alt = 'light_mode'
-    link.src = "arquivos/icon/link_black.png"
-    qrcode.src = "arquivos/icon/qr_code_black.png"
+    // link.src = "arquivos/icon/link_black.png"
+    // qrcode.src = "arquivos/icon/qr_code_black.png"
   }
+  togglePreview()
 }
