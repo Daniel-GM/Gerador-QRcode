@@ -6,6 +6,8 @@
   <link rel="stylesheet" href="css/checkbox.css">
   <link rel="stylesheet" href="css/mode.css">
   <link rel="stylesheet" href="css/sigesis-color.css">
+  <link rel="stylesheet" href="css/mainDiv.css">
+  <link rel="stylesheet" href="css/preview.css">
 
   <link rel="icon" href="arquivos/icon/cropped-icon-1-2-192x192.webp">
 
@@ -21,81 +23,110 @@
   <title>Gerador QRcode</title>
 </head>
 
-<body theme="dark">
-  <div id="gerador">
-
-    <div id="option-gerador">
-      <input type="radio" name="option" id="radio-link" checked />
-      <label for="radio-link" class="icon-option"><img id="img-link" src="arquivos/icon/link_white.svg"></label>
-      <input type="radio" name="option" id="radio-qrcode" />
-      <label for="radio-qrcode" class="icon-option"><img id="img-qrcode" src="arquivos/icon/qr_code_white.svg"></label>
-    </div>
-
-    <div id="theme">
-      <label for="toggleTheme"><img id="theme-icon" src="arquivos/icon/light_mode.png"></label>
-      <input type="checkbox" name="toggleTheme" id="toggleTheme" onclick="toggleTheme()" checked>
-    </div>
-
-    <span id="file-count-logo">Sem logo</span>
-    <img id="file-img-logo">
-    <label for="form-logo" class="file-label">Selecione a Logo do cliente</label>
-    <input type="file" class="file-input" id="form-logo" name="photos">
-
-    <div id="div-qrcode">
-      <p class="text-qrcode">QRCode: <span id="file-count-qrcode">0</span></p>
-      <label for="form-photo" class="file-label">Selecione os QRCode</label>
-      <input type="file" class="file-input" id="form-photo" name="photos" multiple>
-    </div>
-
-    <div id="div-dominio">
-      <span>Nome da instância</span>
-      <input type="text" placeholder="Digitar somente o nome da instância" class="input-text" id="input-link">
-    </div>
-
-    <div id="div-link">
-      <span>Numero inicial das comandas</span>
-      <input type="number" placeholder="Número inicial" class="input-text" id="input-init">
-      <span>Numero final das comandas</span>
-      <input type="number" placeholder="Número final" class="input-text" id="input-quantidade">
-    </div>
-
-    <div id="div-cor">
-      <div class="grupo-cor">
-        <label for="cor" class="text-label">Cor da comanda</label>
-        <input type="color" id="cor" value="#0A7269">
-        <label for="cor" id="pseudo-color-input"></label>
+<body onload="onBodyLoad()" theme="dark">
+  <div id="div-main">
+    <div id="gerador">
+      <div id="option-gerador">
+        <input type="radio" name="option" id="radio-link" checked />
+        <label for="radio-link" class="icon-option"><img id="img-link" src="arquivos/icon/link_white.svg"></label>
+        <input type="radio" name="option" id="radio-qrcode" />
+        <label for="radio-qrcode" class="icon-option"><img id="img-qrcode"
+            src="arquivos/icon/qr_code_white.svg"></label>
       </div>
 
-      <div class="grupo-cor">
-        <label for="cor-site" class="text-label">Cor do texto</label>
-        <input type="color" id="cor-site" value="#FFFFFF">
-        <label for="cor-site" id="pseudo-color-input-text"></label>
+      <div id="theme">
+        <label for="toggleTheme"><img id="theme-icon" src="arquivos/icon/light_mode.png"></label>
+        <input type="checkbox" name="toggleTheme" id="toggleTheme" onclick="toggleTheme()" checked>
       </div>
 
-      <div class="div-cardapio">
-        <label for="cardapio" class="text-label">Cardápio</label>
-        <input type="checkbox" id="cardapio" onclick="inputName()">
+      <span id="file-count-logo">Sem logo</span>
+      <div style="width: 249.56px; height: 100px; display: flex; justify-content: space-around;">
+        <img id="file-img-logo">
       </div>
+      <label for="form-logo" class="file-label">Selecione a Logo do cliente</label>
+      <input type="file" class="file-input" id="form-logo" name="photos">
+
+      <div id="div-qrcode">
+        <p class="text-qrcode">QRCode: <span id="file-count-qrcode">0</span></p>
+        <label for="form-photo" class="file-label">Selecione os QRCode</label>
+        <input type="file" class="file-input" id="form-photo" name="photos" multiple>
+      </div>
+
+      <div id="div-dominio">
+        <span>Nome da instância</span>
+        <input type="text" placeholder="Digitar somente o nome da instância" class="input-text" id="input-link">
+      </div>
+
+      <div id="div-link">
+        <span>Numero inicial das comandas</span>
+        <input type="number" placeholder="Número inicial" class="input-text" id="input-init">
+        <span>Numero final das comandas</span>
+        <input type="number" placeholder="Número final" class="input-text" id="input-quantidade">
+
+        <div style="display: flex; width: 50%; justify-content: space-around; margin-top: 1.5rem;">
+          <div style="display: flex; flex-direction: column; align-items: center;">
+            <div style="display: flex;">
+              <span style="margin: 0px;">Altura</span>
+              <span id="altura-value">: 100px</span>
+            </div>
+            <div style="display: flex; flex-direction: column; align-items: center;">
+              <input type="range" id="altura" min="30" max="100" step="1" value="100">
+            </div>
+          </div>
+
+          <div style="display: flex; flex-direction: column; align-items: center;">
+            <div style="display: flex;">
+              <span style="margin: 0px;">Largura</span> 
+              <span id="largura-value">: 249.56px</span>
+            </div>
+            <div style="display: flex; flex-direction: column; align-items: center;">
+              <input type="range" id="largura" min="100" max="249.56" step="0.01" value="249.56">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="div-cor">
+        <div class="grupo-cor">
+          <label for="cor" class="text-label">Cor da comanda</label>
+          <input type="color" id="cor" value="#0A7269">
+          <label for="cor" id="pseudo-color-input"></label>
+        </div>
+
+        <div class="grupo-cor">
+          <label for="cor-site" class="text-label">Cor do texto</label>
+          <input type="color" id="cor-site" value="#FFFFFF">
+          <label for="cor-site" id="pseudo-color-input-text"></label>
+        </div>
+
+        <div class="div-cardapio">
+          <label for="cardapio" class="text-label">Cardápio</label>
+          <input type="checkbox" id="cardapio" onclick="inputName()">
+        </div>
+      </div>
+
+      <div id="div-sigesis">
+        <input type="radio" name="option-sigesis" id="sigesis-white" checked />
+        <label for="sigesis-white" class="icon-option icon-sigesis"><img id="img-link"
+            src="arquivos/icon/logo-sigesis-branca.png"></label>
+        <input type="radio" name="option-sigesis" id="sigesis-black" />
+        <label for="sigesis-black" class="icon-option icon-sigesis"><img id="img-qrcode"
+            src="arquivos/icon/logo-sigesis-preta.png"></label>
+      </div>
+
+
+      <button class="btn-form" type="submit" onclick="verificarInstancia()">Gerar comanda</button>
+
+      <p id="alert-qrcode">Gerando QRCode</p>
+
+      <label id="loading">
+        <p id="text-loading"></p>
+      </label>
+      <button id="download-form" type="submit">Download</button>
     </div>
 
-    <div id="div-sigesis">
-      <input type="radio" name="option-sigesis" id="sigesis-white" checked />
-      <label for="sigesis-white" class="icon-option icon-sigesis"><img id="img-link"
-          src="arquivos/icon/logo-sigesis-branca.png"></label>
-      <input type="radio" name="option-sigesis" id="sigesis-black" />
-      <label for="sigesis-black" class="icon-option icon-sigesis"><img id="img-qrcode"
-          src="arquivos/icon/logo-sigesis-preta.png"></label>
-    </div>
-
-
-    <button class="btn-form" type="submit" onclick="verificarInstancia()">Gerar comanda</button>
-
-    <p id="alert-qrcode">Gerando QRCode</p>
-
-    <label id="loading">
-      <p id="text-loading"></p>
-    </label>
-    <button id="download-form" type="submit">Download</button>
+    <div id="preview"></div>
+    <div id="qr-preview-none" style="display: none;"></div>
   </div>
 
   <div id="result"></div>
@@ -106,19 +137,9 @@
   <script src="js/mode.js"></script>
   <script src="js/PPI.js"></script>
   <script src="js/onclick.js"></script>
-  <script>
-    document.getElementById('sigesis-white').addEventListener('change', function () {
-      if (this.checked) {
-        document.getElementById('div-sigesis').style.backgroundColor = 'black'
-      }
-    })
-
-    document.getElementById('sigesis-black').addEventListener('change', function () {
-      if (this.checked) {
-        document.getElementById('div-sigesis').style.backgroundColor = 'white'
-      }
-    })
-  </script>
+  <script src="js/preview.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/main.js"></script>
 </body>
 
 </html>

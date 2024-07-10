@@ -42,7 +42,7 @@ function verificarInstancia() {
       }
     })
     .catch(error => {
-      alert('Ocorreu um erro, atualize a página e tente novamente!')
+      alert('Ocorreu um erro, tente novamente ou atualize a página!')
       console.error('Ocorreu um erro ao tentar acessar o site:', error)
     })
 }
@@ -111,10 +111,17 @@ async function gerarComanda() {
     }
 
     /* criando a logo */
+    let divLogo = document.createElement('div')
+    divLogo.style.height = "100px"
+    divLogo.style.width = "249.56px"
+    divLogo.style.display = "flex"
+    divLogo.style.alignItems = "flex-start"
+    divLogo.style.justifyContent = "center"
+
     let logo = document.createElement('img')
     logo.src = URL.createObjectURL(formLogo.files[0])
-    logo.style.height = "100px"
-    logo.style.width = "175px"
+    logo.style.height = window.config.height;
+    logo.style.width = window.config.width;
 
     /* colocando o QRcode */
     let img = document.createElement('img')
@@ -207,7 +214,8 @@ async function gerarComanda() {
       logoSigesis.style.width = '154.49px'
       logoSigesis.style.height = '41px'
 
-      comanda.appendChild(logo)
+      divLogo.appendChild(logo)
+      comanda.appendChild(divLogo)
       comanda.appendChild(id)
       comanda.appendChild(img)
       comanda.appendChild(sigesis)
@@ -215,7 +223,8 @@ async function gerarComanda() {
       comanda.appendChild(logoSigesis)
       result.appendChild(comanda)
     } else {
-      comanda.appendChild(logo)
+      divLogo.appendChild(logo)
+      comanda.appendChild(divLogo)
       comanda.appendChild(img)
       comanda.appendChild(id)
       comanda.appendChild(sigesis)
