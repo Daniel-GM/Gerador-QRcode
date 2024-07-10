@@ -1,6 +1,6 @@
 let linkChanged = false
 let photoChanged = false
-let saveLogo = "../arquivos/qrcodes/menu-white.png"
+let saveLogo = "arquivos/default/menu-white.png"
 let savePhoto
 let saveId = 1
 
@@ -61,19 +61,17 @@ function preview() {
         saveLogo = logo.src
         photoChanged = false
 
-        divFileImg.style.display = "block"
-        fileImgLogo.style.height = window.config.height;
-        fileImgLogo.style.width = window.config.width;
-
+        divFileImg.style.display = "flex"
     } else if (formLogo.files.length == 0 && photoChanged) {
         divFileImg.style.display = "none"
-        saveLogo = "../arquivos/qrcodes/menu-white.png"
+        saveLogo = "arquivos/default/menu-white.png"
         logo.src = saveLogo
     } else {
         logo.src = saveLogo
     }
 
-
+    fileImgLogo.style.height = window.config.height;
+    fileImgLogo.style.width = window.config.width;
     logo.style.height = window.config.height;
     logo.style.width = window.config.width;
     divLogo.appendChild(logo)

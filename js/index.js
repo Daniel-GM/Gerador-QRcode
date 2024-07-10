@@ -119,7 +119,17 @@ async function gerarComanda() {
     divLogo.style.justifyContent = "center"
 
     let logo = document.createElement('img')
-    logo.src = URL.createObjectURL(formLogo.files[0])
+    try {
+      logo.src = URL.createObjectURL(formLogo.files[0]);
+    } catch (error) {
+      console.error("Erro ao tentar definir o src da logo a partir do arquivo.");
+      try {
+        logo.src = "arquivos/default/menu-white.png";
+      } catch (secondError) {
+        console.error("Erro ao tentar definir o src da logo com a imagem padrão do sistema: ", secondError);
+        alert("Erro: " + secondError);
+      }
+    }
     logo.style.height = window.config.height;
     logo.style.width = window.config.width;
 
