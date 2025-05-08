@@ -1,5 +1,3 @@
-window.location.href = "https://gerador-comanda.vercel.app/";
-
 let option = document.getElementsByName('option')
 option.forEach(function(radio) {
   let cardapioChecked = document.querySelector('#cardapio')
